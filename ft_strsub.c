@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ljalikak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/02 16:35:54 by ljalikak          #+#    #+#             */
-/*   Updated: 2019/04/02 17:09:53 by ljalikak         ###   ########.fr       */
+/*   Created: 2019/04/09 11:00:45 by ljalikak          #+#    #+#             */
+/*   Updated: 2019/04/09 11:24:39 by ljalikak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t		ft_strlen(const char *str)
+char	*ft_strsub(const char *s, unsigned int start, size_t n)
 {
-	size_t i;
+	char	*t;
+	size_t	i;
 
 	i = 0;
-	while (str[i] != '\0')
+	if ((t = ft_strnew(n)) == NULL)
+		return (NULL);
+	s = s + start;
+	while (i < n)
+	{
+		t[i] = s[i];
 		i++;
-	return (i);
+	}
+	return (t);
 }

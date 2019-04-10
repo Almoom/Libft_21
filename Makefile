@@ -39,6 +39,21 @@ ft_tolower.c \
 ft_toupper.c \
 ft_strnstr.c \
 ft_memchr.c \
+ft_memalloc.c \
+ft_memdel.c \
+ft_strnew.c \
+ft_strdel.c \
+ft_strclr.c \
+ft_striter.c \
+ft_striteri.c \
+ft_strmap.c \
+ft_strmapi.c \
+ft_strequ.c \
+ft_strnequ.c \
+ft_strsub.c \
+ft_strjoin.c \
+ft_strtrim.c \
+ft_strsplit.c \
 
 all: $(NAME)
 
