@@ -6,52 +6,75 @@
 /*   By: ljalikak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 14:18:39 by ljalikak          #+#    #+#             */
-/*   Updated: 2019/04/09 17:33:41 by ljalikak         ###   ########.fr       */
+/*   Updated: 2019/04/10 13:30:16 by ljalikak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-#include <stdio.h>
-
-static size_t	ft_counter(const char *s, char c)
+static const char	*ft_fnext(const char *str, char c, int flag)
 {
-	size_t		i;
-	const char	*t;
+	if (flag)
+		while (*str != '\0' && *str == c)
+			str++;
+	else
+		while (*str != '\0' && *str != c)
+			str++;
+	return (str);
+}
 
-	i = 1;
-	t = s;
-	while (*t != '\0')
+static int			ft_count(const char *str, char c)
+{
+	int i;
+
+	i = 0;
+	while (*str != '\0')
 	{
-		if (*t == c)
+		str = ft_fnext(str, c, 1);
+		if (*str != '\0')
+		{
 			i++;
-		t++;
+			str = ft_fnext(str, c, 0);
+		}
 	}
 	return (i);
 }
 
-char			**ft_strsplit(const char *s, char c)
+static char			**ft_del(char **rez, int len)
 {
-	size_t		j;
-	size_t		k;
-	char		**rez;
-	const char	*t;
+	int i;
 
-	j = 0;
-	k = 0;
-	t = s;
-	rez = (char**)malloc(sizeof(char*) * (ft_counter(s, c) + 1));
-	while (j < ft_counter(s, c))
+	i = 0;
+	while (i < len)
+		free(rez[i]);
+	free(rez);
+	return (NULL);
+}
+
+char				**ft_strsplit(char const *str, char c)
+{
+	char		**rez;
+	int			i;
+	const char	*next;
+
+	if (str == NULL)
+		return (NULL);
+	if ((rez = (char**)malloc(sizeof(char*) * (ft_count(str, c) + 1))) == NULL)
+		return (NULL);
+	i = 0;
+	while (*str != '\0')
 	{
-		rez[j] = ft_strnew(ft_strlen(t));
-		while (*t != c && *t != '\0')
-			rez[j][k++] = *t++;
-		if (*t == c)
-			t++;
-		rez[j][k] = '\0';
-		printf("%s\n", rez[j]);
-		k = 0;
-		j++;
+		str = ft_fnext(str, c, 1);
+		if (*str != '\0')
+		{
+			next = ft_fnext(str, c, 0);
+			rez[i] = ft_strsub(str, 0, next - str);
+			if (rez[i] == NULL)
+				return (ft_del(rez, i));
+			i++;
+			str = next;
+		}
 	}
+	rez[i] = 0;
 	return (rez);
 }

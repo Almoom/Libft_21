@@ -6,7 +6,7 @@
 /*   By: ljalikak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 13:04:36 by ljalikak          #+#    #+#             */
-/*   Updated: 2019/04/07 20:57:36 by ljalikak         ###   ########.fr       */
+/*   Updated: 2019/04/10 17:03:52 by ljalikak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFT_H
 # include <string.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 size_t	ft_strlen(const char *str);
 char	*ft_strdup(const char *src);
@@ -58,4 +59,13 @@ char	*ft_strsub(const char *s, unsigned int start, size_t n);
 char	*ft_strjoin(const char *s1, const char *s2);
 char	*ft_strtrim(const char *s);
 char	**ft_strsplit(const char *s, char c);
+char	*ft_itoa(int n);
+void	ft_putchar(char c);
+void	ft_putchar_fd(char c, int fd);
+void	ft_putstr(char const *s);
+void	ft_putendl(char const *s);
+void	ft_putstr_fd(char const *s, int fd);
+void	ft_putendl_fd(char const *s, int fd);
+void	ft_putnbr_fd(int n, int fd);
+void	ft_putnbr(int n);
 #endif
