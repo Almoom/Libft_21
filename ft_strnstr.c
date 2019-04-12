@@ -21,8 +21,6 @@ char	*ft_strnstr(const char *str, const char *to_find, size_t n)
 	j = 0;
 	if (!to_find[0])
 		return ((char *)str);
-	if (str == NULL)
-		return (NULL);
 	while (str[i] != '\0' && i < n)
 	{
 		while (str[i + j] == to_find[j] && i + j < n)

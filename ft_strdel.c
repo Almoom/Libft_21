@@ -14,6 +14,5 @@
 
 void	ft_strdel(char **ar)
 {
-	free(*ar);
-	*ar = NULL;
+	ft_memdel((void**)ar);
 }

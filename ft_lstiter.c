@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_striter.c                                       :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ljalikak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/08 14:47:02 by ljalikak          #+#    #+#             */
-/*   Updated: 2019/04/08 14:47:04 by ljalikak         ###   ########.fr       */
+/*   Created: 2019/04/11 19:34:29 by ljalikak          #+#    #+#             */
+/*   Updated: 2019/04/11 19:34:31 by ljalikak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_striter(char *s, void (*f)(char *))
+void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
 {
-	if (!s || !f)
-		return ;
-	while (*s != '\0')
+	f(lst);
+	while (lst->next)
 	{
-		f(s);
-		s++;
+		lst = lst->next;
+		f(lst);
 	}
 }

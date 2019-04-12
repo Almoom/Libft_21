@@ -1,53 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ljalikak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/10 14:43:15 by ljalikak          #+#    #+#             */
-/*   Updated: 2019/04/10 17:18:02 by ljalikak         ###   ########.fr       */
+/*   Created: 2019/04/11 13:00:20 by ljalikak          #+#    #+#             */
+/*   Updated: 2019/04/11 13:56:28 by ljalikak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_isize(long n)
+t_list	*ft_lstnew(void const *content, size_t content_size)
 {
-	int i;
+	t_list *list;
 
-	i = 0;
-	if (n == 0 || n < 0)
-		i++;
-	while (n != 0)
-	{
-		n /= 10;
-		i++;
-	}
-	return (i);
-}
-
-char		*ft_itoa(int n)
-{
-	char	*s;
-	int		i;
-	long	t;
-
-	t = n;
-	i = ft_isize(t);
-	if ((s = ft_strnew(i)) == NULL)
+	if ((list = (t_list*)ft_memalloc(sizeof(t_list))) == NULL)
 		return (NULL);
-	if (t < 0)
+	if (content == NULL)
 	{
-		s[0] = '-';
-		t *= -1;
+		content_size = 0;
+		list->content = NULL;
 	}
-	while (i > 0)
+	else
 	{
-		if (s[i - 1] != '-')
-			s[i - 1] = (t % 10) + '0';
-		t /= 10;
-		i--;
+		if ((list->content = ft_memalloc(content_size)) == NULL)
+		{
+			ft_memdel((void**)&list);
+			return (NULL);
+		}
+		ft_memcpy(list->content, content, content_size);
 	}
-	return (s);
+	list->content_size = content_size;
+	list->next = NULL;
+	return (list);
 }

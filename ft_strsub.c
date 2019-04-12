@@ -18,6 +18,8 @@ char	*ft_strsub(const char *s, unsigned int start, size_t n)
 	size_t	i;
 
 	i = 0;
+	if (!s)
+		return (NULL);
 	if ((t = ft_strnew(n)) == NULL)
 		return (NULL);
 	s = s + start;
