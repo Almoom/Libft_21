@@ -46,7 +46,7 @@ static char			**ft_del(char **rez, int len)
 
 	i = 0;
 	while (i < len)
-		free(rez[i]);
+		free(rez[i++]);
 	free(rez);
 	return (NULL);
 }

@@ -10,6 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror -c
 NAME = libft.a
 SRC = ft_atoi.c \
 ft_bzero.c \
@@ -68,16 +70,20 @@ ft_lstdelone.c \
 ft_lstdel.c \
 ft_lstadd.c \
 ft_lstiter.c \
-ft_lstmap.c \
+ft_lstmap.c
+OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME):
-	gcc -Wall -Wextra -Werror -c $(SRC)
-	ar rc $(NAME) *.o
+$(NAME): $(OBJ)
+	$(CC) $(CFLAGS) $(SRC)
+	ar rc $(NAME) $(OBJ)
+
+.c.o:
+	$(CC) $(CFLAGS) $< -o $@
 
 clean:
-	rm -f *.o
+	rm -f $(OBJ)
 
 fclean: clean
 	rm -f $(NAME)

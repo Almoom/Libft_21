@@ -19,6 +19,7 @@ static void	ft_clean(t_list *lst)
 	while (lst)
 	{
 		tmp = lst->next;
+		free(lst->content);
 		ft_memdel((void **)&lst);
 		lst = tmp;
 	}
@@ -29,6 +30,8 @@ t_list		*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 	t_list	*elem;
 	t_list	*first;
 
+	if (!lst || !f)
+		return (NULL);
 	if ((elem = ft_lstnew(lst->content, lst->content_size)) == NULL)
 		return (NULL);
 	elem = (*f)(elem);
