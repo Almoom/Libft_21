@@ -27,10 +27,12 @@ int	ft_atoi(const char *str)
 	&& str[i + 1] <= '9')
 		sign = -1 * (str[i++] - 44);
 	while (str[i] >= '0' && str[i] <= '9')
-		rez = (rez * 10 + (str[i++] - '0'));
-	if (rez > 9223372036854775807 && sign == -1)
-		return (0);
-	else if (rez >= 9223372036854775807 && sign == 1)
-		return (-1);
+	{
+		if (rez > 922337203685477580)
+			return ((1 + sign) / -2);
+		if (rez == 922337203685477580 && str[i] - 48 > 8 + (1 + sign) / -2)
+			return ((1 + sign) / -2);
+		rez = rez * 10 + (str[i++] - '0');
+	}
 	return ((int)rez * sign);
 }

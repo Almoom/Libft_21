@@ -6,7 +6,7 @@
 /*   By: ljalikak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 14:18:39 by ljalikak          #+#    #+#             */
-/*   Updated: 2019/04/10 13:30:16 by ljalikak         ###   ########.fr       */
+/*   Updated: 2019/04/14 22:06:46 by ljalikak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ static const char	*ft_fnext(const char *str, char c, int flag)
 	return (str);
 }
 
-static int			ft_count(const char *str, char c)
+static size_t		ft_count(const char *str, char c)
 {
-	int i;
+	size_t i;
 
 	i = 0;
 	while (*str != '\0')
@@ -59,7 +59,8 @@ char				**ft_strsplit(char const *str, char c)
 
 	if (str == NULL)
 		return (NULL);
-	if ((rez = (char**)malloc(sizeof(char*) * (ft_count(str, c) + 1))) == NULL)
+	if (!(rez = (char**)malloc(sizeof(char*) * (ft_count(str, c) + 1)))
+		|| (ft_count(str, c) + 1 < ft_count(str, c)))
 		return (NULL);
 	i = 0;
 	while (*str != '\0')

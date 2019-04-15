@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static void	ft_clean(t_list *lst)
+static void	ft_lstclean(t_list *lst)
 {
 	t_list	*tmp;
 
@@ -27,26 +27,27 @@ static void	ft_clean(t_list *lst)
 
 t_list		*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	t_list	*elem;
-	t_list	*first;
+	t_list		*result;
+	t_list		*head;
+	t_list		*elem;
 
 	if (!lst || !f)
 		return (NULL);
-	if ((elem = ft_lstnew(lst->content, lst->content_size)) == NULL)
+	elem = f(lst);
+	if (!(result = ft_lstnew(elem->content, elem->content_size)))
 		return (NULL);
-	elem = (*f)(elem);
-	first = elem;
-	while (lst->next)
+	lst = lst->next;
+	head = result;
+	while (lst)
 	{
-		lst = lst->next;
-		elem->next = ft_lstnew(lst->content, lst->content_size);
-		if (elem->next == NULL)
+		elem = f(lst);
+		if (!(result->next = ft_lstnew(elem->content, elem->content_size)))
 		{
-			ft_clean(first);
+			ft_lstclean(head);
 			return (NULL);
 		}
-		elem->next = (*f)(elem->next);
-		elem = elem->next;
+		result = result->next;
+		lst = lst->next;
 	}
-	return (first);
+	return (head);
 }

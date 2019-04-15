@@ -16,20 +16,24 @@ char	*ft_strjoin(const char *s1, const char *s2)
 {
 	char	*t;
 	size_t	i;
+	size_t	l1;
+	size_t	l2;
 
 	i = 0;
 	if (!s1 || !s2)
 		return (NULL);
-	if ((t = ft_strnew(ft_strlen(s1) + ft_strlen(s2))) == NULL)
+	l1 = ft_strlen(s1);
+	l2 = ft_strlen(s2);
+	if (!(t = ft_strnew(l1 + l2)) || (l1 + l2 < l1) || (l1 + l2 < l2))
 		return (NULL);
-	while (i < ft_strlen(s1))
+	while (i < l1)
 	{
 		t[i] = s1[i];
 		i++;
 	}
-	while (i < ft_strlen(s1) + ft_strlen(s2))
+	while (i < l1 + l2)
 	{
-		t[i] = s2[i - ft_strlen(s1)];
+		t[i] = s2[i - l1];
 		i++;
 	}
 	return (t);
