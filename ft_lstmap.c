@@ -33,7 +33,8 @@ t_list		*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 
 	if (!lst || !f)
 		return (NULL);
-	elem = f(lst);
+	if (!(elem = f(lst)))
+		return (NULL);
 	if (!(result = ft_lstnew(elem->content, elem->content_size)))
 		return (NULL);
 	lst = lst->next;
