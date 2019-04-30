@@ -35,7 +35,7 @@ char		*ft_itoa(int n)
 
 	t = n;
 	i = ft_isize(t);
-	if ((s = ft_strnew(i)) == NULL)
+	if (!(s = ft_strnew(i)))
 		return (NULL);
 	if (t < 0)
 	{

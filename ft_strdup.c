@@ -21,7 +21,7 @@ char	*ft_strdup(const char *src)
 	if (!(s = (char*)malloc(sizeof(*src) * (ft_strlen(src) + 1)))
 		|| ft_strlen(src) == 9223372036854775807)
 		return (NULL);
-	while (src[i] != '\0')
+	while (src[i])
 	{
 		s[i] = src[i];
 		i++;

@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_arrintfree.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ljalikak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/06 15:52:14 by ljalikak          #+#    #+#             */
-/*   Updated: 2019/04/06 17:21:56 by ljalikak         ###   ########.fr       */
+/*   Created: 2019/04/29 11:37:27 by ljalikak          #+#    #+#             */
+/*   Updated: 2019/04/29 11:37:29 by ljalikak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+void	ft_arrintfree(int **arr, int n)
 {
-	unsigned char		*d;
-	const unsigned char	*s;
+	int		i;
 
-	if (dest == src)
-		return (dest);
-	d = (unsigned char *)dest;
-	s = (unsigned char *)src;
-	while (n-- > 0)
-		*d++ = *s++;
-	return (dest);
+	i = 0;
+	if (!arr)
+		return ;
+	while (i < n)
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
 }

@@ -18,12 +18,10 @@ char	*ft_strnew(size_t n)
 	size_t	i;
 
 	i = 0;
-	if (!(t = (char *)malloc(n + 1)) || n + 1 < n)
+	if (n + 1 < n || !(t = (char *)malloc(n + 1)))
 		return (NULL);
 	while (i < n)
-	{
-		t[i++] = 0;
-	}
+		t[i++] = '\0';
 	t[i] = '\0';
 	return (t);
 }

@@ -24,7 +24,7 @@ char	*ft_strjoin(const char *s1, const char *s2)
 		return (NULL);
 	l1 = ft_strlen(s1);
 	l2 = ft_strlen(s2);
-	if (!(t = ft_strnew(l1 + l2)) || (l1 + l2 < l1) || (l1 + l2 < l2))
+	if ((l1 + l2 < l1) || (l1 + l2 < l2) || !(t = ft_strnew(l1 + l2)))
 		return (NULL);
 	while (i < l1)
 	{

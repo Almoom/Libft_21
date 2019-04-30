@@ -15,6 +15,9 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
+# include <fcntl.h>
+# define BUFF_SIZE 5
 
 typedef struct		s_list
 {
@@ -80,4 +83,13 @@ void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+int					ft_get_next_line(const int fd, char **line);
+int					ft_get_next_file(const int fd, char **line);
+void				ft_arrcharfree(char **str);
+char				**ft_arrcharnew(int row, int col);
+void				ft_arrintfree(int **arr, int n);
+int					**ft_arrintnew(int row, int col);
+int					ft_log(int base, int rez);
+int					ft_pwr(int nb, int pwr);
+size_t				ft_sqrt(size_t n);
 #endif

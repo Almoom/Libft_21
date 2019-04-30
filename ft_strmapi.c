@@ -20,9 +20,9 @@ char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
 	i = 0;
 	if (!s || !f)
 		return (NULL);
-	if ((t = ft_strnew(ft_strlen(s))) == NULL)
+	if (!(t = ft_strnew(ft_strlen(s))))
 		return (NULL);
-	while (s[i] != '\0')
+	while (s[i])
 	{
 		t[i] = f(i, s[i]);
 		i++;

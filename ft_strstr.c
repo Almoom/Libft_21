@@ -21,7 +21,7 @@ char	*ft_strstr(const char *str, const char *to_find)
 	j = 0;
 	if (!to_find[0])
 		return ((char *)str);
-	while (str[i] != '\0')
+	while (str[i])
 	{
 		while (str[i + j] == to_find[j])
 		{

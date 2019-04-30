@@ -15,10 +15,10 @@
 static const char	*ft_fnext(const char *str, char c, int flag)
 {
 	if (flag)
-		while (*str != '\0' && *str == c)
+		while (*str && *str == c)
 			str++;
 	else
-		while (*str != '\0' && *str != c)
+		while (*str && *str != c)
 			str++;
 	return (str);
 }
@@ -28,10 +28,10 @@ static size_t		ft_count(const char *str, char c)
 	size_t i;
 
 	i = 0;
-	while (*str != '\0')
+	while (*str)
 	{
 		str = ft_fnext(str, c, 1);
-		if (*str != '\0')
+		if (*str)
 		{
 			i++;
 			str = ft_fnext(str, c, 0);
@@ -59,14 +59,14 @@ char				**ft_strsplit(char const *str, char c)
 
 	if (str == NULL)
 		return (NULL);
-	if (!(rez = (char**)malloc(sizeof(char*) * (ft_count(str, c) + 1)))
-		|| (ft_count(str, c) + 1 < ft_count(str, c)))
+	if ((ft_count(str, c) + 1 < ft_count(str, c)) ||
+	!(rez = (char**)malloc(sizeof(char*) * (ft_count(str, c) + 1))))
 		return (NULL);
 	i = 0;
 	while (*str != '\0')
 	{
 		str = ft_fnext(str, c, 1);
-		if (*str != '\0')
+		if (*str)
 		{
 			next = ft_fnext(str, c, 0);
 			rez[i] = ft_strsub(str, 0, next - str);

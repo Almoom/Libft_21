@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_pwr.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ljalikak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/06 15:52:14 by ljalikak          #+#    #+#             */
-/*   Updated: 2019/04/06 17:21:56 by ljalikak         ###   ########.fr       */
+/*   Created: 2019/04/29 12:06:28 by ljalikak          #+#    #+#             */
+/*   Updated: 2019/04/29 12:06:30 by ljalikak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+int		ft_pwr(int nb, int pwr)
 {
-	unsigned char		*d;
-	const unsigned char	*s;
-
-	if (dest == src)
-		return (dest);
-	d = (unsigned char *)dest;
-	s = (unsigned char *)src;
-	while (n-- > 0)
-		*d++ = *s++;
-	return (dest);
+	if (pwr < 0 || nb != (nb * 10) / 10)
+		return (0);
+	if (pwr == 0 || nb == 1)
+		return (1);
+	if (pwr == 1)
+		return (nb);
+	else if (pwr % 2 == 1)
+		return (nb * ft_pwr(nb, pwr - 1));
+	else
+		return (ft_pwr(nb * nb, pwr >> 1));
 }

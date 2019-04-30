@@ -17,9 +17,9 @@ char	*ft_strcat(char *dest, const char *app)
 	char *s;
 
 	s = dest;
-	while (*s != '\0')
+	while (*s)
 		s++;
-	while (*app != '\0')
+	while (*app)
 		*s++ = *app++;
 	*s = '\0';
 	return (dest);

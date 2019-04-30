@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_arrintnew.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ljalikak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/06 15:52:14 by ljalikak          #+#    #+#             */
-/*   Updated: 2019/04/06 17:21:56 by ljalikak         ###   ########.fr       */
+/*   Created: 2019/04/29 11:18:51 by ljalikak          #+#    #+#             */
+/*   Updated: 2019/04/29 11:18:55 by ljalikak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+int		**ft_arrintnew(int row, int col)
 {
-	unsigned char		*d;
-	const unsigned char	*s;
+	int		i;
+	int		**tab;
 
-	if (dest == src)
-		return (dest);
-	d = (unsigned char *)dest;
-	s = (unsigned char *)src;
-	while (n-- > 0)
-		*d++ = *s++;
-	return (dest);
+	i = 0;
+	if (!(tab = (int**)ft_memalloc(sizeof(tab) * row)))
+		return (0);
+	while (i < row)
+	{
+		if (!(tab[i] = (int*)ft_memalloc(sizeof(*tab) * col)))
+		{
+			ft_arrintfree(tab, i - 1);
+			return (0);
+		}
+		i++;
+	}
+	return (tab);
 }

@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_arrcharnew.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ljalikak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/06 15:52:14 by ljalikak          #+#    #+#             */
-/*   Updated: 2019/04/06 17:21:56 by ljalikak         ###   ########.fr       */
+/*   Created: 2019/04/29 11:26:04 by ljalikak          #+#    #+#             */
+/*   Updated: 2019/04/29 11:26:06 by ljalikak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+char	**ft_arrcharnew(int row, int col)
 {
-	unsigned char		*d;
-	const unsigned char	*s;
+	int		i;
+	char	**str;
 
-	if (dest == src)
-		return (dest);
-	d = (unsigned char *)dest;
-	s = (unsigned char *)src;
-	while (n-- > 0)
-		*d++ = *s++;
-	return (dest);
+	i = 0;
+	if (row + 1 < row || !(str = (char**)ft_memalloc(sizeof(str) * (row + 1))))
+		return (0);
+	while (i < row)
+	{
+		if (!(str[i] = ft_strnew(col)))
+		{
+			ft_arrcharfree(str);
+			return (0);
+		}
+		i++;
+	}
+	return (str);
 }
