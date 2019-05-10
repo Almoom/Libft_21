@@ -92,4 +92,8 @@ int					**ft_arrintnew(int row, int col);
 int					ft_log(int base, int rez);
 int					ft_pwr(int nb, int pwr);
 size_t				ft_sqrt(size_t n);
+char				*ft_strrev_free(char *s, int flag);
+char				*ft_strjoin_free
+					(const char *s1, const char *s2, int f1, int f2);
+char				*ft_print_bit(void *v, int size, int flag);
 #endif

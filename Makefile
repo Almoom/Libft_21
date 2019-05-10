@@ -42,6 +42,7 @@ ft_memcpy.c \
 ft_memdel.c \
 ft_memmove.c \
 ft_memset.c \
+ft_print_bit.c \
 ft_putchar.c \
 ft_putchar_fd.c \
 ft_putendl.c \
@@ -63,6 +64,7 @@ ft_strequ.c \
 ft_striter.c \
 ft_striteri.c \
 ft_strjoin.c \
+ft_strjoin_free.c \
 ft_strlcat.c \
 ft_strlen.c \
 ft_strmap.c \
@@ -74,6 +76,7 @@ ft_strnequ.c \
 ft_strnew.c \
 ft_strnstr.c \
 ft_strrchr.c \
+ft_strrev_free.c \
 ft_strsplit.c \
 ft_strstr.c \
 ft_strsub.c \
@@ -91,7 +94,7 @@ $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $< -o $@
 
 .PHONY: clean fclean re
-	
+
 clean:
 	@rm -f $(OBJ)
 
